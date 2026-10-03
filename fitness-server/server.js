@@ -104,7 +104,7 @@ app.post("/api/login",async(req,res)=>{
   req.session.user=publicUser(u);res.json({user:req.session.user});
 });
 app.post("/api/logout",(req,res)=>req.session.destroy(()=>res.json({ok:true})));
-app.get("/api/me",(req,res)=>res.json({user:req.session.user||null}));
+app.get("/api/me",(req,res)=>{ if(!req.session.user)return res.json({user:null}); const users=read("users"); const u=users.find(x=>x.id===req.session.user.id); if(!u)return res.json({user:null}); req.session.user=publicUser(u); res.json({user:req.session.user}); });
 
 app.post("/api/checkout",userOnly,async(req,res)=>{
   const plan=getPlan(req.body.planId);
