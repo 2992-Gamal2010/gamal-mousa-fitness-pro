@@ -57,7 +57,8 @@ app.use((req,res,next)=>{res.header("Access-Control-Allow-Origin","https://gamal
 
 app.use(express.json({limit:"2mb"}));
 app.use(express.urlencoded({extended:true}));
-app.set("trust proxy",1);\napp.use(session({
+app.set("trust proxy",1);\napp.set("trust proxy",1);
+app.use(session({
   secret:process.env.SESSION_SECRET||"CHANGE_THIS_SESSION_SECRET",
   resave:false,saveUninitialized:false,
   cookie:{httpOnly:true,sameSite:"none",secure:true,maxAge:1000*60*60*24*7}
