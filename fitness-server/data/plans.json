@@ -1,0 +1,41 @@
+[
+  {
+    "id": "free",
+    "name": "مجاني",
+    "price": 0,
+    "period": "شهري",
+    "description": "ابدأ بعادات صحية وتمارين أساسية.",
+    "features": [
+      "تمارين أساسية",
+      "محتوى صحي عام"
+    ],
+    "active": true
+  },
+  {
+    "id": "pro",
+    "name": "Pro",
+    "price": 99,
+    "period": "شهري",
+    "description": "مكتبة أكبر من التمارين وخطط منظمة.",
+    "features": [
+      "كل محتوى المجاني",
+      "تمارين إضافية",
+      "خطط تدريب"
+    ],
+    "active": true
+  },
+  {
+    "id": "premium",
+    "name": "Premium",
+    "price": 199,
+    "period": "شهري",
+    "description": "التجربة الكاملة مع محتوى Premium.",
+    "features": [
+      "كل محتوى Pro",
+      "تمارين Premium",
+      "فيديوهات وصور",
+      "تتبع التقدم"
+    ],
+    "active": true
+  }
+]

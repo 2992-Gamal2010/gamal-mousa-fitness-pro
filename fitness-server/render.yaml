@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: gamal-mousa-fitness
+    runtime: node
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        sync: false
+      - key: ADMIN_USERNAME
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: PAYMOB_BASE_URL
+        value: https://accept.paymob.com
+      - key: PAYMOB_SECRET_KEY
+        sync: false
+      - key: PAYMOB_PUBLIC_KEY
+        sync: false
+      - key: PAYMOB_HMAC_SECRET
+        sync: false
+      - key: PAYMOB_INTEGRATION_IDS
+        sync: false

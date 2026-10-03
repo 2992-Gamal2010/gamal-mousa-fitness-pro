@@ -1,0 +1,62 @@
+[
+  {
+    "id": "528f8b0d-c491-4d86-95a3-a8cb0a0c4d60",
+    "title": "ChangeMe123!",
+    "description": "ChangeMe123!",
+    "level": "ChangeMe123!",
+    "planId": "free",
+    "image": "",
+    "video": "ChangeMe123!",
+    "sets": "ChangeMe123!",
+    "reps": "ChangeMe123!",
+    "createdAt": "2026-10-03T18:06:06.942Z"
+  },
+  {
+    "id": "w1",
+    "title": "سكوات وزن الجسم",
+    "description": "تمرين أساسي للرجلين. نفذه بتحكم وبمدى حركة مريح.",
+    "level": "مبتدئ",
+    "planId": "free",
+    "image": "",
+    "video": "",
+    "sets": "3",
+    "reps": "10-12",
+    "createdAt": "2026-10-03T00:00:00.000Z"
+  },
+  {
+    "id": "w2",
+    "title": "ضغط على الحائط",
+    "description": "نسخة سهلة من الضغط مناسبة للبداية.",
+    "level": "مبتدئ",
+    "planId": "free",
+    "image": "",
+    "video": "",
+    "sets": "3",
+    "reps": "10-12",
+    "createdAt": "2026-10-03T00:00:00.000Z"
+  },
+  {
+    "id": "w3",
+    "title": "Glute Bridge",
+    "description": "رفع الحوض مع شد عضلات المؤخرة والتحكم في الحركة.",
+    "level": "مبتدئ",
+    "planId": "pro",
+    "image": "",
+    "video": "",
+    "sets": "3",
+    "reps": "12-15",
+    "createdAt": "2026-10-03T00:00:00.000Z"
+  },
+  {
+    "id": "w4",
+    "title": "Plank",
+    "description": "ثبات الجذع مع الحفاظ على وضع جسم مريح.",
+    "level": "متوسط",
+    "planId": "premium",
+    "image": "",
+    "video": "",
+    "sets": "3",
+    "reps": "20-30 ثانية",
+    "createdAt": "2026-10-03T00:00:00.000Z"
+  }
+]
