@@ -53,12 +53,14 @@ for(const [k,v] of Object.entries(defaults)){
 const read=k=>JSON.parse(fs.readFileSync(path.join(DATA,k+".json"),"utf8"));
 const write=(k,v)=>fs.writeFileSync(path.join(DATA,k+".json"),JSON.stringify(v,null,2),"utf8");
 
+app.use((req,res,next)=>{res.header("Access-Control-Allow-Origin","https://gamal-mousa-fitness.vercel.app");res.header("Access-Control-Allow-Credentials","true");res.header("Access-Control-Allow-Headers","Content-Type");res.header("Access-Control-Allow-Methods","GET,POST,PUT,PATCH,DELETE,OPTIONS");if(req.method==="OPTIONS")return res.sendStatus(204);next();});
+
 app.use(express.json({limit:"2mb"}));
 app.use(express.urlencoded({extended:true}));
 app.use(session({
   secret:process.env.SESSION_SECRET||"CHANGE_THIS_SESSION_SECRET",
   resave:false,saveUninitialized:false,
-  cookie:{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",maxAge:1000*60*60*24*7}
+  cookie:{httpOnly:true,sameSite:"none",secure:true,maxAge:1000*60*60*24*7}
 }));
 app.use("/uploads",express.static(UPLOADS));
 app.use("/admin",express.static(ADMIN));
