@@ -298,4 +298,4 @@ app.use((err,req,res,next)=>{
   next();
 });
 
-app.listen(PORT,()=>console.log(`جمال موسى FITNESS: http://localhost:${PORT} | Admin: http://localhost:${PORT}/admin`));
+app.listen(PORT,"0.0.0.0",()=>console.log(`جمال موسى FITNESS: http://localhost:${PORT} | Admin: http://localhost:${PORT}/admin`));
