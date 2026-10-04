@@ -31,7 +31,28 @@ async function changeUser(id,planId){await api("/api/admin/user/"+id,{method:"PA
 async function resetUser(id){const p=prompt("كلمة المرور الجديدة (6 أحرف على الأقل)");if(p&&p.length>=6){await api("/api/admin/user/"+id,{method:"PATCH",body:JSON.stringify({resetPassword:p})});alert("تم")}}
 async function deleteUser(id){if(confirm("حذف المستخدم؟")){await api("/api/admin/user/"+id,{method:"DELETE"});loadUsers();loadStats()}}
 async function addUser(){await api("/api/admin/user",{method:"POST",body:JSON.stringify({name:$("nuName").value,email:$("nuEmail").value,password:$("nuPass").value,planId:$("nuPlan").value})});loadUsers();loadStats()}
-async function uploadFile(file){if(!file)return "";let f=new FormData();f.append("file",file);let r=await fetch("/api/admin/upload",{method:"POST",body:f});let d=await r.json();if(!r.ok)throw Error(d.error);return d.url}
+async function uploadFile(file){
+  if(!file)return "";
+  let f=new FormData();
+  f.append("file",file);
+
+  let r=await fetch("/api/admin/upload",{
+    method:"POST",
+    body:f
+  });
+
+  let text=await r.text();
+  let d={};
+
+  try{
+    d=JSON.parse(text);
+  }catch{
+    throw Error("فشل رفع الملف. السيرفر أرسل استجابة غير صالحة.");
+  }
+
+  if(!r.ok)throw Error(d.error||"فشل رفع الملف.");
+  return d.url||"";
+}if(!file)return "";let f=new FormData();f.append("file",file);let r=await fetch("/api/admin/upload",{method:"POST",body:f});let d=await r.json();if(!r.ok)throw Error(d.error);return d.url}
 async function addWorkout(){try{const image=await uploadFile($("wi").files[0]),localVideo=await uploadFile($("wv").files[0]);const video=localVideo||$("wvideo").value;await api("/api/admin/workout",{method:"POST",body:JSON.stringify({title:$("wt").value,description:$("wd").value,level:$("wl").value,planId:$("wp").value,image,video,sets:$("ws").value,reps:$("wr").value})});$("wmsg").textContent="تمت إضافة التمرين";$("wmsg").style.display="block";loadWorkouts();loadStats()}catch(e){$("wmsg").textContent=e.message;$("wmsg").style.display="block"}}
 async function loadWorkouts(){let a=await api("/api/admin/workouts");$("workoutsList").innerHTML=a.map(w=>`<div class="card" style="margin:8px 0"><b>${w.title}</b> <span class="badge">${w.planId}</span><p class="muted">${w.description||""}</p><div class="media">${w.image?`<img src="${w.image}">`:""}${w.video?`<video controls src="${w.video}"></video>`:""}</div><button class="btn red" style="margin-top:8px" onclick="deleteWorkout('${w.id}')">حذف</button></div>`).join("")}
 async function deleteWorkout(id){if(confirm("حذف التمرين؟")){await api("/api/admin/workout/"+id,{method:"DELETE"});loadWorkouts();loadStats()}}
