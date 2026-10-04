@@ -32,22 +32,94 @@ async function resetUser(id){const p=prompt("كلمة المرور الجديد�
 async function deleteUser(id){if(confirm("حذف المستخدم؟")){await api("/api/admin/user/"+id,{method:"DELETE"});loadUsers();loadStats()}}
 async function addUser(){await api("/api/admin/user",{method:"POST",body:JSON.stringify({name:$("nuName").value,email:$("nuEmail").value,password:$("nuPass").value,planId:$("nuPlan").value})});loadUsers();loadStats()}
 async function uploadFile(file){
-  if(!file)return "";
+  if(!file) return "";
 
-  let f=new FormData();
+  // ضغط الصور تلقائيًا قبل الرفع
+  if(file.type.startsWith("image/")){
+    file = await new Promise((resolve,reject)=>{
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        img.onload = () => {
+          const maxSize = 1200;
+          let w = img.width;
+          let h = img.height;
+
+          if(w > maxSize || h > maxSize){
+            if(w > h){
+              h = Math.round(h * maxSize / w);
+              w = maxSize;
+            }else{
+              w = Math.round(w * maxSize / h);
+              h = maxSize;
+            }
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = w;
+          canvas.height = h;
+
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img,0,0,w,h);
+
+          canvas.toBlob(blob=>{
+            if(!blob){
+              reject(new Error("فشل ضغط الصورة"));
+              return;
+            }
+
+            resolve(new File(
+              [blob],
+              "image.webp",
+              {type:"image/webp"}
+            ));
+          },"image/webp",0.65);
+        };
+
+        img.onerror = () => reject(new Error("تعذر قراءة الصورة"));
+        img.src = e.target.result;
+      };
+
+      reader.onerror = () => reject(new Error("تعذر قراءة الملف"));
+      reader.readAsDataURL(file);
+    });
+  }
+
+  let f = new FormData();
   f.append("file",file);
 
-  let r=await fetch("/api/admin/upload",{
+  let r = await fetch("/api/admin/upload",{
     method:"POST",
     body:f,
     credentials:"include"
   });
 
-  let text=await r.text();
+  let text = await r.text();
 
   if(!r.ok){
-    throw Error("خطأ رفع الملف: HTTP "+r.status+" — "+text.slice(0,300));
+    throw Error(
+      "خطأ رفع الملف: HTTP "+r.status+
+      " — "+text.slice(0,300)
+    );
   }
+
+  try{
+    let d = JSON.parse(text);
+
+    if(!d.url){
+      throw Error("السيرفر لم يرجع رابط الملف.");
+    }
+
+    return d.url;
+
+  }catch(e){
+    throw Error(
+      "السيرفر رجّع استجابة غير JSON: "+
+      text.slice(0,300)
+    );
+  }
+}
 
   try{
     let d=JSON.parse(text);
