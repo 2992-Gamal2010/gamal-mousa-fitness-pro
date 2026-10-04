@@ -12,7 +12,7 @@
 <section id="settings" class="section"><div class="card"><h2>إعدادات الموقع</h2><input id="setBrand" placeholder="اسم الموقع"><input id="setLogo" placeholder="شعار"><input id="setCash" placeholder="رقم الكاش"><input id="setFawry" placeholder="رابط فوري Payment Link (اختياري)"><input id="setSupport" placeholder="رقم الدعم"><input id="setUrl" placeholder="رابط الموقع النهائي"><button class="btn" onclick="saveSettings()">حفظ الإعدادات</button><div class="msg">الدفع الإلكتروني Paymob يتضبط من ملف <b>.env</b> في السيرفر، وليس من هنا.</div></div></section>
 </main></div>
 <script>
-const $=id=>document.getElementById(id);async function api(u,o={}){let r=await fetch(u,{headers:{"Content-Type":"application/json",...(o.headers||{})},...o});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.error||"خطأ");return d}
+const $=id=>document.getElementById(id);async function api(u,o={}){let r=await fetch(u,{credentials:"include",headers:{"Content-Type":"application/json",...(o.headers||{})},...o});let d={};try{d=await r.json()}catch{}if(!r.ok)throw Error(d.error||"خطأ");return d}
 let plans=[];
 document.querySelectorAll(".nav button").forEach(b=>b.onclick=()=>show(b.dataset.s));
 function show(s){document.querySelectorAll(".section").forEach(x=>x.classList.remove("active"));$(s).classList.add("active");document.querySelectorAll(".nav button").forEach(x=>x.classList.toggle("active",x.dataset.s===s));$("title").textContent={dash:"الرئيسية",payments:"المدفوعات",users:"المستخدمين",plans:"الاشتراكات",workouts:"التمارين",settings:"الإعدادات"}[s];if(s==="dash")loadStats();if(s==="payments")loadPayments();if(s==="users")loadUsers();if(s==="plans")loadPlans();if(s==="workouts")loadWorkouts();if(s==="settings")loadSettings()}
