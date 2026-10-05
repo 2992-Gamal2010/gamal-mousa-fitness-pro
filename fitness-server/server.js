@@ -61,7 +61,7 @@ app.set("trust proxy",1);
 app.use(session({
   secret:process.env.SESSION_SECRET||"CHANGE_THIS_SESSION_SECRET",
   resave:false,saveUninitialized:false,proxy:true,
-  cookie:{httpOnly:true,sameSite:"lax",secure:process.env.NODE_ENV==="production",maxAge:1000*60*60*24*7}
+  cookie:{httpOnly:true,sameSite:"none",secure:true,maxAge:1000*60*60*24*7}
 }));
 app.use("/uploads",express.static(UPLOADS));
 app.use("/admin",express.static(ADMIN));
@@ -374,4 +374,7 @@ app.use((err,req,res,next)=>{
 });
 
 app.listen(PORT,"0.0.0.0",()=>console.log(`Ø¬Ù…Ø§Ù„ Ù…ÙˆØ³Ù‰ FITNESS: http://localhost:${PORT} | Admin: http://localhost:${PORT}/admin`));
+
+
+
 
