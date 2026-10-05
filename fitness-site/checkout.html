@@ -1,3 +1,367 @@
-﻿<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>الدفع | جمال موسى FITNESS</title><link rel="stylesheet" href="assets/style.css"></head><body><header class="nav"><div class="navin"><a class="logo" href="index.html">جمال موسى <span>FITNESS</span></a><a class="btn" href="plans.html">الاشتراكات</a></div></header><main class="container"><section class="formbox reveal"><h1>إتمام الاشتراك</h1><p id="info" style="color:var(--muted);line-height:1.8;margin-bottom:20px">جاري تحميل الخطة...</p><button id="pay" class="btn gold">المتابعة للدفع</button><div id="m" class="msg"></div></section></main><script src="assets/app.js"></script><script>
-let s,pid=new URLSearchParams(location.search).get("plan"),plan=null;(async()=>{s=await site();plan=(s.plans||[]).find(p=>String(p.id)===String(pid));$("#info").textContent=plan?`${plan.name||plan.title||"الخطة"} — ${plan.price??"—"} ${plan.currency||"جنيه"}`:"الخطة غير موجودة"})();$(#pay).onclick=async()=>{try{let me=await api(/api/me);if(!me.user){$(#m).textContent=يجب تسجيل الدخول أولًا قبل متابعة الدفع. إذا لم يكن لديك حساب، يمكنك إنشاء حساب جديد.;$(#m).className=msg err;return;}}catch(e){$(#m).textContent=يجب تسجيل الدخول أولًا قبل متابعة الدفع.;$(#m).className=msg err;return;}let m=$("#m");m.className="msg";try{if(!plan)throw Error("اختر خطة صحيحة");let d=await api("/api/checkout",{method:"POST",body:JSON.stringify({planId:plan.id,paymentMethod:"paymob"})});if(d.redirectUrl)location.href=d.redirectUrl;else if(d.url)location.href=d.url;else if(d.payment_url)location.href=d.payment_url;else location.href="payment-complete.html"}catch(e){m.textContent=e.message;m.className="msg err"}}
-</script></body></html>
+﻿<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>إتمام الاشتراك | جمال موسى FITNESS</title>
+<link rel="stylesheet" href="assets/style.css">
+<style>
+.checkout-wrap{
+  max-width:900px;
+  margin:70px auto;
+}
+.checkout-card{
+  padding:32px;
+}
+.plan-summary{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+  padding:22px;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:20px;
+  background:rgba(255,255,255,.03);
+  margin:25px 0;
+}
+.plan-price{
+  font-size:32px;
+  font-weight:900;
+}
+.payment-title{
+  margin-top:30px;
+  margin-bottom:15px;
+}
+.payment-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+.payment-option{
+  padding:22px 16px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:18px;
+  background:rgba(255,255,255,.025);
+  text-align:center;
+  cursor:pointer;
+  transition:.2s;
+}
+.payment-option:hover{
+  transform:translateY(-2px);
+  border-color:rgba(212,175,55,.55);
+}
+.payment-option.active{
+  border-color:#d4af37;
+  box-shadow:0 0 0 2px rgba(212,175,55,.12);
+}
+.payment-option.disabled{
+  opacity:.48;
+  cursor:not-allowed;
+}
+.payment-icon{
+  font-size:34px;
+  margin-bottom:10px;
+}
+.payment-name{
+  font-size:18px;
+  font-weight:800;
+}
+.payment-status{
+  display:block;
+  margin-top:7px;
+  font-size:12px;
+}
+.cash-box{
+  display:none;
+  margin-top:20px;
+  padding:22px;
+  border-radius:18px;
+  background:rgba(212,175,55,.08);
+  border:1px solid rgba(212,175,55,.30);
+}
+.cash-number{
+  font-size:27px;
+  font-weight:900;
+  direction:ltr;
+  text-align:center;
+  margin:12px 0;
+}
+.login-box{
+  text-align:center;
+  padding:35px 20px;
+}
+.message{
+  display:none;
+  margin-top:18px;
+  padding:15px;
+  border-radius:14px;
+  line-height:1.8;
+}
+@media(max-width:700px){
+  .checkout-wrap{margin:30px 15px}
+  .checkout-card{padding:20px}
+  .payment-grid{grid-template-columns:1fr}
+  .plan-summary{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+
+<body>
+
+<header class="nav">
+  <div class="navin">
+    <a class="logo" href="index.html">
+      جمال موسى <span>FITNESS</span>
+    </a>
+    <a class="btn alt" href="plans.html">العودة للباقات</a>
+  </div>
+</header>
+
+<main class="container checkout-wrap">
+
+<section class="formbox checkout-card">
+
+<h1>إتمام الاشتراك</h1>
+<p class="muted">
+أكمل بيانات الدفع لاشتراكك في جمال موسى FITNESS.
+</p>
+
+<div id="loginBox" class="login-box" style="display:none">
+
+  <div style="font-size:48px">🔐</div>
+
+  <h2>يجب تسجيل الدخول أولا</h2>
+
+  <p class="muted">
+    سجل الدخول أو أنشئ حسابا جديدا حتى نتمكن من إنشاء طلب الاشتراك.
+  </p>
+
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+    <a class="btn gold" href="login.html">تسجيل الدخول</a>
+    <a class="btn alt" href="register.html">إنشاء حساب</a>
+  </div>
+
+</div>
+
+<div id="checkoutContent" style="display:none">
+
+  <div class="plan-summary">
+    <div>
+      <div class="muted">الباقة المختارة</div>
+      <h2 id="planName">—</h2>
+      <div class="muted" id="planPeriod">—</div>
+    </div>
+
+    <div class="plan-price" id="planPrice">—</div>
+  </div>
+
+  <h2 class="payment-title">اختر طريقة الدفع</h2>
+
+  <div class="payment-grid">
+
+    <div class="payment-option disabled">
+      <div class="payment-icon">💳</div>
+      <div class="payment-name">فيزا</div>
+      <span class="payment-status">متاحة قريبا</span>
+    </div>
+
+    <div class="payment-option disabled">
+      <div class="payment-icon">🟡</div>
+      <div class="payment-name">فوري</div>
+      <span class="payment-status">متاحة قريبا</span>
+    </div>
+
+    <div id="cashOption" class="payment-option active" onclick="selectCash()">
+      <div class="payment-icon">💵</div>
+      <div class="payment-name">الدفع بالكاش</div>
+      <span class="payment-status">متاح الآن</span>
+    </div>
+
+  </div>
+
+  <div id="cashBox" class="cash-box">
+
+    <h3>الدفع بالكاش</h3>
+
+    <p>
+      حول قيمة الاشتراك إلى رقم الكاش التالي:
+    </p>
+
+    <div id="cashNumber" class="cash-number">جاري التحميل...</div>
+
+    <p class="muted">
+      بعد التحويل اكتب رقم العملية أو المرجع في الخانة التالية.
+    </p>
+
+    <label>مرجع الدفع</label>
+    <input id="reference" placeholder="مثال: 123456789">
+
+    <button id="confirmBtn" class="btn gold" style="width:100%;margin-top:15px" onclick="confirmCash()">
+      تأكيد الدفع
+    </button>
+
+  </div>
+
+  <div id="message" class="message"></div>
+
+</div>
+
+</section>
+
+</main>
+
+<script>
+
+const API_BASE="";
+let SITE={plans:[],settings:{}};
+let ME=null;
+let selectedPlan=null;
+let paymentId=null;
+
+const $=id=>document.getElementById(id);
+
+async function api(url,opt={}){
+
+  const response=await fetch(API_BASE+url,{
+    credentials:"include",
+    headers:{
+      "Content-Type":"application/json",
+      ...(opt.headers||{})
+    },
+    ...opt
+  });
+
+  let data={};
+
+  try{
+    data=await response.json();
+  }catch{}
+
+  if(!response.ok){
+    throw new Error(data.error||"حدث خطأ");
+  }
+
+  return data;
+}
+
+function showMessage(text){
+
+  $("message").textContent=text;
+  $("message").style.display="block";
+}
+
+async function boot(){
+
+  try{
+
+    SITE=await api("/api/site");
+
+    const me=await api("/api/me");
+
+    ME=me.user;
+
+    if(!ME){
+
+      $("loginBox").style.display="block";
+      return;
+
+    }
+
+    $("checkoutContent").style.display="block";
+
+    const params=new URLSearchParams(location.search);
+    const planId=params.get("plan");
+
+    selectedPlan=SITE.plans.find(p=>p.id===planId);
+
+    if(!selectedPlan){
+
+      showMessage("لم يتم تحديد الباقة. ارجع إلى صفحة الباقات واختر الباقة مرة أخرى.");
+      return;
+
+    }
+
+    $("planName").textContent=selectedPlan.name;
+    $("planPrice").textContent=selectedPlan.price+" جنيه";
+    $("planPeriod").textContent=selectedPlan.period||"اشتراك";
+
+    $("cashNumber").textContent=
+      SITE.settings.cashNumber||SITE.settings.supportPhone||"لم يتم إعداد رقم الكاش بعد";
+
+    $("cashBox").style.display="block";
+
+  }catch(error){
+
+    $("loginBox").style.display="block";
+    showMessage(error.message);
+
+  }
+
+}
+
+function selectCash(){
+
+  $("cashBox").style.display="block";
+}
+
+async function confirmCash(){
+
+  if(!selectedPlan)return;
+
+  const reference=$("reference").value.trim();
+
+  if(!reference){
+
+    showMessage("اكتب مرجع الدفع أو رقم العملية أولا.");
+    return;
+
+  }
+
+  const btn=$("confirmBtn");
+
+  btn.disabled=true;
+  btn.textContent="جاري إرسال الطلب...";
+
+  try{
+
+    const checkout=await api("/api/checkout",{
+      method:"POST",
+      body:JSON.stringify({
+        planId:selectedPlan.id,
+        provider:"cash"
+      })
+    });
+
+    paymentId=checkout.paymentId;
+
+    await api("/api/cash-confirm",{
+      method:"POST",
+      body:JSON.stringify({
+        paymentId,
+        reference
+      })
+    });
+
+    showMessage(
+      "تم إرسال طلب الاشتراك بنجاح ✅ الطلب الآن قيد المراجعة من الإدارة."
+    );
+
+    btn.textContent="تم إرسال الطلب ✓";
+
+  }catch(error){
+
+    showMessage(error.message);
+
+    btn.disabled=false;
+    btn.textContent="تأكيد الدفع";
+
+  }
+
+}
+
+boot();
+
+</script>
+
+</body>
+</html>
