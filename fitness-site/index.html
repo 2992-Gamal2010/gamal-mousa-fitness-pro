@@ -1,609 +1,1869 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>جمال موسى FITNESS</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جمال موسى FITNESS</title>
+  <meta name="description" content="جمال موسى FITNESS - تمارين وبرامج وخطط لياقة">
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:Tahoma,Arial,sans-serif;
-  background:#070b12;
-  color:#fff;
-  overflow-x:hidden;
-}
-a{text-decoration:none;color:inherit}
-button{font-family:inherit;cursor:pointer;border:0}
+  <style>
+    :root {
+      --bg: #070707;
+      --bg2: #101010;
+      --card: rgba(255,255,255,.055);
+      --border: rgba(255,255,255,.09);
+      --gold: #d7ad55;
+      --gold2: #f1d38a;
+      --text: #fff;
+      --muted: #aaa;
+      --green: #42d392;
+      --danger: #ff6868;
+    }
 
-:root{
-  --gold:#f5c542;
-  --gold2:#ffdf70;
-  --dark:#070b12;
-  --card:#101722;
-  --muted:#9aa6b5;
-  --border:rgba(255,255,255,.09);
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-/* الخلفية المتحركة */
-.bg{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  z-index:-1;
-  background:
-    radial-gradient(circle at 80% 20%,rgba(245,197,66,.12),transparent 30%),
-    radial-gradient(circle at 15% 70%,rgba(0,180,255,.08),transparent 30%),
-    var(--dark);
-}
-.shape{
-  position:absolute;
-  border-radius:50%;
-  filter:blur(2px);
-  opacity:.35;
-  animation:float 10s ease-in-out infinite;
-}
-.s1{
-  width:280px;height:280px;
-  background:rgba(245,197,66,.13);
-  top:8%;right:-80px;
-}
-.s2{
-  width:190px;height:190px;
-  background:rgba(0,170,255,.10);
-  bottom:10%;left:-50px;
-  animation-delay:2s;
-}
-.s3{
-  width:100px;height:100px;
-  border:2px solid rgba(245,197,66,.3);
-  top:45%;left:30%;
-  animation-delay:4s;
-}
-@keyframes float{
-  0%,100%{transform:translate(0,0) rotate(0)}
-  50%{transform:translate(20px,-30px) rotate(12deg)}
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* Navbar */
-.nav{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(7,11,18,.82);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid var(--border);
-}
-.nav-inner{
-  max-width:1200px;
-  margin:auto;
-  padding:16px 22px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.logo{
-  font-size:22px;
-  font-weight:900;
-}
-.logo span{color:var(--gold)}
-.links{
-  display:flex;
-  gap:22px;
-  align-items:center;
-}
-.links a{
-  color:#dbe2ea;
-  transition:.25s;
-}
-.links a:hover{color:var(--gold)}
-.nav-btn{
-  background:var(--gold);
-  color:#111;
-  padding:10px 18px;
-  border-radius:12px;
-  font-weight:800;
-  transition:.25s;
-}
-.nav-btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 25px rgba(245,197,66,.25);
-}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(215,173,85,.13), transparent 30%),
+        radial-gradient(circle at 90% 30%, rgba(215,173,85,.08), transparent 30%),
+        linear-gradient(180deg, #050505, #0b0b0b 50%, #050505);
+      color: var(--text);
+      font-family: Arial, Tahoma, sans-serif;
+      overflow-x: hidden;
+    }
 
-/* Hero */
-.hero{
-  min-height:calc(100vh - 75px);
-  max-width:1200px;
-  margin:auto;
-  padding:80px 22px;
-  display:grid;
-  grid-template-columns:1.1fr .9fr;
-  align-items:center;
-  gap:50px;
-}
-.badge{
-  display:inline-flex;
-  padding:8px 14px;
-  border:1px solid rgba(245,197,66,.3);
-  background:rgba(245,197,66,.08);
-  color:var(--gold2);
-  border-radius:50px;
-  margin-bottom:22px;
-}
-.hero h1{
-  font-size:clamp(42px,7vw,78px);
-  line-height:1.05;
-  margin-bottom:25px;
-}
-.hero h1 span{
-  color:var(--gold);
-  text-shadow:0 0 30px rgba(245,197,66,.15);
-}
-.hero p{
-  color:var(--muted);
-  font-size:19px;
-  line-height:1.9;
-  max-width:650px;
-}
-.actions{
-  display:flex;
-  gap:14px;
-  margin-top:30px;
-  flex-wrap:wrap;
-}
-.primary,.secondary{
-  padding:15px 25px;
-  border-radius:14px;
-  font-weight:900;
-  transition:.3s;
-}
-.primary{
-  background:var(--gold);
-  color:#111;
-}
-.secondary{
-  background:#111a27;
-  color:#fff;
-  border:1px solid var(--border);
-}
-.primary:hover,.secondary:hover{
-  transform:translateY(-5px);
-}
-.primary:hover{
-  box-shadow:0 12px 35px rgba(245,197,66,.25);
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* Hero card */
-.hero-card{
-  min-height:430px;
-  border:1px solid var(--border);
-  border-radius:30px;
-  background:linear-gradient(145deg,#121c2a,#0b1018);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  overflow:hidden;
-  box-shadow:0 30px 80px rgba(0,0,0,.3);
-  animation:heroFloat 5s ease-in-out infinite;
-}
-@keyframes heroFloat{
-  0%,100%{transform:translateY(0)}
-  50%{transform:translateY(-10px)}
-}
-.hero-circle{
-  width:280px;
-  height:280px;
-  border-radius:50%;
-  border:1px solid rgba(245,197,66,.25);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-}
-.hero-circle:before{
-  content:"";
-  position:absolute;
-  inset:25px;
-  border-radius:50%;
-  border:1px dashed rgba(245,197,66,.35);
-  animation:spin 15s linear infinite;
-}
-@keyframes spin{to{transform:rotate(360deg)}}
-.hero-icon{
-  font-size:100px;
-  filter:drop-shadow(0 0 25px rgba(245,197,66,.25));
-}
+    button {
+      font-family: inherit;
+    }
 
-/* Sections */
-.section{
-  max-width:1200px;
-  margin:auto;
-  padding:90px 22px;
-}
-.section-head{
-  text-align:center;
-  margin-bottom:45px;
-}
-.section-head h2{
-  font-size:38px;
-  margin-bottom:12px;
-}
-.section-head p{color:var(--muted)}
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: auto;
+    }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-.card{
-  background:rgba(16,23,34,.86);
-  border:1px solid var(--border);
-  border-radius:22px;
-  padding:28px;
-  transition:.35s;
-  position:relative;
-  overflow:hidden;
-}
-.card:before{
-  content:"";
-  position:absolute;
-  width:100px;height:100px;
-  background:rgba(245,197,66,.08);
-  border-radius:50%;
-  top:-50px;left:-50px;
-}
-.card:hover{
-  transform:translateY(-10px);
-  border-color:rgba(245,197,66,.3);
-  box-shadow:0 20px 45px rgba(0,0,0,.25);
-}
-.icon{
-  width:58px;height:58px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:16px;
-  background:rgba(245,197,66,.1);
-  font-size:28px;
-  margin-bottom:20px;
-}
-.card h3{margin-bottom:10px}
-.card p{
-  color:var(--muted);
-  line-height:1.8;
-}
+    /* ================= NAV ================= */
 
-/* Stats */
-.stats{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
-.stat{
-  text-align:center;
-  padding:30px;
-  background:#0e151f;
-  border:1px solid var(--border);
-  border-radius:20px;
-}
-.stat-number{
-  font-size:45px;
-  font-weight:900;
-  color:var(--gold);
-  margin-bottom:5px;
-}
-.stat p{color:var(--muted)}
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5,5,5,.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
 
-/* CTA */
-.cta{
-  text-align:center;
-  background:linear-gradient(135deg,#151d29,#0c1119);
-  border:1px solid var(--border);
-  border-radius:30px;
-  padding:60px 25px;
-}
-.cta h2{
-  font-size:42px;
-  margin-bottom:15px;
-}
-.cta p{
-  color:var(--muted);
-  margin-bottom:25px;
-}
+    .nav-inner {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-/* Footer */
-footer{
-  border-top:1px solid var(--border);
-  padding:35px 22px;
-  text-align:center;
-  color:var(--muted);
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 20px;
+      white-space: nowrap;
+    }
 
-/* Scroll animation */
-.reveal{
-  opacity:0;
-  transform:translateY(35px);
-  transition:opacity .8s ease,transform .8s ease;
-}
-.reveal.show{
-  opacity:1;
-  transform:translateY(0);
-}
+    .logo {
+      width: 45px;
+      height: 45px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--gold), #8d6926);
+      color: #111;
+      font-weight: 1000;
+      box-shadow: 0 10px 30px rgba(215,173,85,.2);
+    }
 
-/* Mobile */
-@media(max-width:850px){
-  .links{display:none}
-  .hero{
-    grid-template-columns:1fr;
-    text-align:center;
-    padding-top:55px;
-  }
-  .hero p{margin:auto}
-  .actions{justify-content:center}
-  .hero-card{min-height:330px}
-  .cards{grid-template-columns:1fr}
-  .stats{grid-template-columns:1fr}
-  .section{padding:65px 18px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{
-    animation:none!important;
-    transition:none!important;
-    scroll-behavior:auto!important;
-  }
-}
-</style>
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .nav-links a {
+      color: #bbb;
+      padding: 10px 13px;
+      border-radius: 10px;
+      transition: .25s;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255,255,255,.06);
+    }
+
+    .login-btn {
+      background: var(--gold) !important;
+      color: #111 !important;
+      font-weight: 800;
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: white;
+      border-radius: 10px;
+      padding: 9px 12px;
+      cursor: pointer;
+      font-size: 20px;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      position: relative;
+      min-height: 650px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      right: -180px;
+      top: 50px;
+      border-radius: 50%;
+      background: rgba(215,173,85,.09);
+      filter: blur(90px);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 14px;
+      border: 1px solid rgba(215,173,85,.25);
+      background: rgba(215,173,85,.07);
+      color: var(--gold2);
+      border-radius: 999px;
+      font-size: 13px;
+      margin-bottom: 25px;
+    }
+
+    .badge span {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    .hero h1 {
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: .98;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+      font-weight: 1000;
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .hero p {
+      max-width: 680px;
+      color: #b8b8b8;
+      font-size: 19px;
+      line-height: 1.9;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 13px;
+      border: 1px solid var(--border);
+      font-weight: 800;
+      cursor: pointer;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold2), var(--gold));
+      color: #111;
+      box-shadow: 0 12px 35px rgba(215,173,85,.15);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 45px rgba(215,173,85,.23);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.045);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.09);
+      transform: translateY(-3px);
+    }
+
+    /* ================= STATS ================= */
+
+    .stats {
+      padding: 10px 0 70px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 25px;
+      text-align: center;
+      backdrop-filter: blur(12px);
+    }
+
+    .stat-number {
+      color: var(--gold2);
+      font-size: 34px;
+      font-weight: 1000;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: #999;
+      font-size: 14px;
+    }
+
+    /* ================= SECTIONS ================= */
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 1000;
+      margin-bottom: 8px;
+    }
+
+    .section-description {
+      color: #999;
+      line-height: 1.8;
+    }
+
+    .view-all {
+      color: var(--gold2);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    /* ================= CARDS ================= */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.065),
+        rgba(255,255,255,.025)
+      );
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      transition: .3s;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(215,173,85,.3);
+      box-shadow: 0 20px 50px rgba(0,0,0,.25);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      left: -50px;
+      bottom: -70px;
+      border-radius: 50%;
+      background: rgba(215,173,85,.08);
+      filter: blur(20px);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(215,173,85,.1);
+      color: var(--gold2);
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #999;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* ================= PLAN CARDS ================= */
+
+    .plan-card {
+      padding: 28px;
+    }
+
+    .plan-name {
+      font-size: 25px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .plan-price {
+      font-size: 37px;
+      color: var(--gold2);
+      font-weight: 1000;
+      margin: 18px 0 5px;
+    }
+
+    .plan-period {
+      color: #888;
+      font-size: 13px;
+    }
+
+    .plan-description {
+      margin: 18px 0;
+      min-height: 50px;
+    }
+
+    .features {
+      list-style: none;
+      margin: 20px 0;
+    }
+
+    .features li {
+      padding: 9px 0;
+      color: #bbb;
+      font-size: 14px;
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+
+    .features li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 900;
+      margin-left: 8px;
+    }
+
+    .plan-button {
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    /* ================= WORKOUTS ================= */
+
+    .workout-card {
+      padding: 0;
+    }
+
+    .workout-image {
+      height: 170px;
+      background:
+        linear-gradient(135deg, rgba(215,173,85,.18), rgba(0,0,0,.7)),
+        radial-gradient(circle at 30% 30%, #3b3020, #111 65%);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .workout-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .workout-placeholder {
+      font-size: 48px;
+      opacity: .75;
+    }
+
+    .workout-body {
+      padding: 22px;
+    }
+
+    .workout-meta {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+      margin: 13px 0;
+    }
+
+    .tag {
+      padding: 6px 9px;
+      border-radius: 7px;
+      background: rgba(255,255,255,.06);
+      color: #aaa;
+      font-size: 11px;
+    }
+
+    .tag.gold-tag {
+      color: var(--gold2);
+      background: rgba(215,173,85,.09);
+    }
+
+    /* ================= CTA ================= */
+
+    .cta {
+      margin: 50px 0 80px;
+      padding: 55px 35px;
+      border-radius: 28px;
+      text-align: center;
+      border: 1px solid rgba(215,173,85,.2);
+      background:
+        radial-gradient(circle at center, rgba(215,173,85,.13), transparent 60%),
+        rgba(255,255,255,.035);
+    }
+
+    .cta h2 {
+      font-size: clamp(30px, 5vw, 48px);
+      margin-bottom: 15px;
+    }
+
+    .cta p {
+      color: #999;
+      margin-bottom: 25px;
+      line-height: 1.8;
+    }
+
+    /* ================= LOADING ================= */
+
+    .loading {
+      text-align: center;
+      padding: 50px 20px;
+      color: #999;
+      border: 1px dashed var(--border);
+      border-radius: 18px;
+    }
+
+    .spinner {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      border: 3px solid rgba(255,255,255,.1);
+      border-top-color: var(--gold);
+      animation: spin .8s linear infinite;
+      margin: 0 auto 15px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .error-box {
+      display: none;
+      padding: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,104,104,.25);
+      background: rgba(255,104,104,.06);
+      color: #ff9b9b;
+      margin-bottom: 25px;
+      line-height: 1.8;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding: 35px 0;
+      color: #777;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        right: 16px;
+        left: 16px;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 15px;
+        background: rgba(12,12,12,.97);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        text-align: center;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding: 70px 0;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        width: min(100% - 22px, 1180px);
+      }
+
+      .hero h1 {
+        letter-spacing: -1.5px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      section {
+        padding: 60px 0;
+      }
+
+      .cta {
+        padding: 40px 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="bg">
-  <div class="shape s1"></div>
-  <div class="shape s2"></div>
-  <div class="shape s3"></div>
-</div>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container nav-inner">
 
-<header class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="logo">
-      جمال موسى <span>FITNESS</span>
-    </a>
+      <a href="/" class="brand">
+        <div class="logo" id="logoText">GM</div>
+        <span id="brandName">جمال موسى FITNESS</span>
+      </a>
 
-    <nav class="links">
-      <a href="index.html">الرئيسية</a>
-      <a href="plans.html">الاشتراكات</a>
-      <a href="workouts.html">التمارين</a>
-      <a href="programs.html">البرامج</a>
-      <a href="contact.html">الدعم</a>
-    </nav>
+      <button class="menu-btn" id="menuBtn" aria-label="القائمة">
+        ☰
+      </button>
 
-    <a href="login.html" class="nav-btn">تسجيل الدخول</a>
-  </div>
-</header>
+      <div class="nav-links" id="navLinks">
+        <a href="/">الرئيسية</a>
+        <a href="#plans">الخطط</a>
+        <a href="#workouts">التمارين</a>
+        <a href="plans.html">الاشتراكات</a>
+        <a href="workouts.html">كل التمارين</a>
+        <a href="login.html" class="login-btn">تسجيل الدخول</a>
+      </div>
 
-<main>
-
-<section class="hero">
-  <div class="reveal">
-    <div class="badge">🔥 ابدأ رحلتك الآن</div>
-
-    <h1>
-      ابنِ جسمك<br>
-      <span>وطوّر قوتك</span>
-    </h1>
-
-    <p>
-      جمال موسى FITNESS منصة لياقة متكاملة تساعدك على التدريب،
-      متابعة التمارين والبرامج، والوصول إلى محتوى تدريبي منظم.
-    </p>
-
-    <div class="actions">
-      <a href="plans.html" class="primary">اكتشف الاشتراكات</a>
-      <a href="workouts.html" class="secondary">شاهد التمارين</a>
     </div>
-  </div>
+  </nav>
 
-  <div class="hero-card reveal">
-    <div class="hero-circle">
-      <div class="hero-icon">💪</div>
+  <!-- HERO -->
+  <main>
+
+    <section class="hero">
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="badge">
+            <span></span>
+            منصة اللياقة الخاصة بك
+          </div>
+
+          <h1>
+            ابنِ جسمك.<br>
+            <span class="gold">طوّر قوتك.</span>
+          </h1>
+
+          <p>
+            أهلاً بك في جمال موسى FITNESS.
+            منصة تجمع لك التمارين والخطط الرياضية في مكان واحد،
+            لتبدأ رحلتك وتستمر عليها بخطوات واضحة.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#plans" class="btn btn-primary">
+              اكتشف الخطط
+            </a>
+
+            <a href="#workouts" class="btn btn-secondary">
+              شاهد التمارين
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- STATS -->
+    <section class="stats">
+      <div class="container">
+
+        <div class="stats-grid">
+
+          <div class="stat">
+            <div class="stat-number" id="workoutCount">—</div>
+            <div class="stat-label">تمرين متاح</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number" id="planCount">—</div>
+            <div class="stat-label">خطط تدريبية</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-number">24/7</div>
+            <div class="stat-label">الوصول إلى المنصة</div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- PLANS -->
+    <section id="plans">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">خطط تناسبك</div>
+            <div class="section-description">
+              اختر الخطة المناسبة لك وابدأ رحلتك.
+            </div>
+          </div>
+
+          <a href="plans.html" class="view-all">
+            عرض كل الخطط ←
+          </a>
+
+        </div>
+
+        <div id="plansError" class="error-box"></div>
+
+        <div id="plansLoading" class="loading">
+          <div class="spinner"></div>
+          جاري تحميل الخطط...
+        </div>
+
+        <div class="cards" id="plansContainer"></div>
+
+      </div>
+
+    </section>
+
+    <!-- WORKOUTS -->
+    <section id="workouts">
+
+      <div class="container">
+
+        <div class="section-head">
+
+          <div>
+            <div class="section-title">أحدث التمارين</div>
+            <div class="section-description">
+              مجموعة من التمارين الموجودة فعليًا على المنصة.
+            </div>
+          </div>
+
+          <a href="workouts.html" class="view-all">
+            عرض كل التمارين ←
+          </a>
+
+        </div>
+
+        <div id="workoutsError" class="error-box"></div>
+
+        <div id="workoutsLoading" class="loading">
+          <div class="spinner"></div>
+          جاري تحميل التمارين...
+        </div>
+
+        <div class="cards" id="workoutsContainer"></div>
+
+      </div>
+
+    </section>
+
+    <!-- CTA -->
+    <div class="container">
+
+      <div class="cta">
+
+        <h2>
+          جاهز تبدأ؟
+        </h2>
+
+        <p>
+          اختر خطتك وابدأ الوصول إلى محتوى جمال موسى FITNESS.
+        </p>
+
+        <a href="plans.html" class="btn btn-primary">
+          ابدأ الآن
+        </a>
+
+      </div>
+
     </div>
-  </div>
-</section>
 
+  </main>
 
-<section class="section">
-  <div class="section-head reveal">
-    <h2>كل ما تحتاجه في مكان واحد</h2>
-    <p>منصة منظمة لمساعدتك على الالتزام والتطور</p>
-  </div>
-
-  <div class="cards">
-
-    <a href="workouts.html" class="card reveal">
-      <div class="icon">🏋️</div>
-      <h3>مكتبة التمارين</h3>
-      <p>
-        تمارين متنوعة مع شرح العضلات المستهدفة،
-        المجموعات والتكرارات وطريقة الأداء.
-      </p>
-    </a>
-
-    <a href="programs.html" class="card reveal">
-      <div class="icon">📋</div>
-      <h3>البرامج التدريبية</h3>
-      <p>
-        برامج منظمة تساعدك على التدريب بطريقة
-        واضحة ومتدرجة.
-      </p>
-    </a>
-
-    <a href="plans.html" class="card reveal">
-      <div class="icon">⭐</div>
-      <h3>خطط الاشتراك</h3>
-      <p>
-        اختر الخطة المناسبة لك واستمتع بالمحتوى
-        المتاح حسب اشتراكك.
-      </p>
-    </a>
-
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="section-head reveal">
-    <h2>المنصة بالأرقام</h2>
-    <p>المحتوى يتم تحميله من السيرفر تلقائيًا</p>
-  </div>
-
-  <div class="stats">
-
-    <div class="stat reveal">
-      <div class="stat-number" id="countWorkouts">0</div>
-      <p>تمرين</p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div id="footerBrand">
+        © جمال موسى FITNESS
+      </div>
     </div>
-
-    <div class="stat reveal">
-      <div class="stat-number" id="countPlans">0</div>
-      <p>خطة اشتراك</p>
-    </div>
-
-    <div class="stat reveal">
-      <div class="stat-number">24/7</div>
-      <p>الوصول للمنصة</p>
-    </div>
-
-  </div>
-</section>
+  </footer>
 
 
-<section class="section">
-  <div class="cta reveal">
-    <h2>جاهز تبدأ؟ 🔥</h2>
-    <p>
-      اختار خطتك وابدأ الوصول إلى المحتوى التدريبي.
-    </p>
-    <a href="plans.html" class="primary">ابدأ الآن</a>
-  </div>
-</section>
+  <script>
+    "use strict";
 
-</main>
+    /* =========================
+       HELPERS
+    ========================= */
 
-<footer>
-  © <span id="year"></span> جمال موسى FITNESS — جميع الحقوق محفوظة
-</footer>
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
 
+    function isBadWorkout(workout) {
+      const badValues = [
+        "ChangeMe123!",
+        "ChangeMe",
+        "test",
+        "Test"
+      ];
 
+      const fields = [
+        workout?.title,
+        workout?.description,
+        workout?.level,
+        workout?.video,
+        workout?.sets,
+        workout?.reps
+      ];
+
+      return fields.some(value =>
+        badValues.includes(String(value || "").trim())
+      );
+    }
+
+    function formatPrice(price) {
+      const number = Number(price);
+
+      if (!Number.isFinite(number)) {
+        return "غير محدد";
+      }
+
+      if (number === 0) {
+        return "مجاني";
+      }
+
+      return number.toLocaleString("ar-EG") + " ج.م";
+    }
+
+    /* =========================
+       MOBILE MENU
+    ========================= */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+      });
+    });
+
+    /* =========================
+       PLAN CARD
+    ========================= */
+
+    function createPlanCard(plan) {
+
+      const features = Array.isArray(plan.features)
+        ? plan.features
+        : [];
+
+      const featuresHtml = features.length
+        ? features
+            .slice(0, 5)
+            .map(feature =>
+              `<li>${escapeHtml(feature)}</li>`
+            )
+            .join("")
+        : `<li>محتوى حسب الخطة</li>`;
+
+      return `
+        <article class="card plan-card">
+
+          <div class="card-icon">◆</div>
+
+          <div class="plan-name">
+            ${escapeHtml(plan.name || "خطة")}
+          </div>
+
+          <div class="plan-price">
+            ${formatPrice(plan.price)}
+          </div>
+
+          <div class="plan-period">
+            ${escapeHtml(plan.period || "شهري")}
+          </div>
+
+          <p class="plan-description">
+            ${escapeHtml(
+              plan.description ||
+              "خطة تدريبية لمساعدتك على تحقيق أهدافك."
+            )}
+          </p>
+
+          <ul class="features">
+            ${featuresHtml}
+          </ul>
+
+          <a
+            href="plans.html"
+            class="btn btn-primary plan-button"
+          >
+            عرض الخطة
+          </a>
+
+        </article>
+      `;
+    }
+
+    /* =========================
+       WORKOUT CARD
+    ========================= */
+
+    function createWorkoutCard(workout) {
+
+      const image = String(workout.image || "").trim();
+
+      const imageHtml = image
+        ? `
+          <img
+            src="${escapeHtml(image)}"
+            alt="${escapeHtml(workout.title || "تمرين")}"
+            loading="lazy"
+            onerror="this.style.display='none';"
+          >
+        `
+        : `
+          <div class="workout-placeholder">
+            💪
+          </div>
+        `;
+
+      const level = workout.level
+        ? `<span class="tag">${escapeHtml(workout.level)}</span>`
+        : "";
+
+      const plan = workout.planId
+        ? `<span class="tag gold-tag">${escapeHtml(workout.planId)}</span>`
+        : "";
+
+      const sets = workout.sets
+        ? `<span class="tag">${escapeHtml(workout.sets)} مجموعات</span>`
+        : "";
+
+      const reps = workout.reps
+        ? `<span class="tag">${escapeHtml(workout.reps)} تكرار</span>`
+        : "";
+
+      return `
+        <article class="card workout-card">
+
+          <div class="workout-image">
+            ${imageHtml}
+          </div>
+
+          <div class="workout-body">
+
+            <h3>
+              ${escapeHtml(workout.title || "تمرين")}
+            </h3>
+
+            <p>
+              ${escapeHtml(
+                workout.description ||
+                "تمرين متاح على منصة جمال موسى FITNESS."
+              )}
+            </p>
+
+            <div class="workout-meta">
+              ${level}
+              ${plan}
+              ${sets}
+              ${reps}
+            </div>
+
+          </div>
+
+        </article>
+      `;
+    }
+
+    /* =========================
+       LOAD SITE DATA
+    ========================= */
+
+    async function loadSite() {
+
+      const plansContainer =
+        document.getElementById("plansContainer");
+
+      const workoutsContainer =
+        document.getElementById("workoutsContainer");
+
+      const plansLoading =
+        document.getElementById("plansLoading");
+
+      const workoutsLoading =
+        document.getElementById("workoutsLoading");
+
+      const plansError =
+        document.getElementById("plansError");
+
+      const workoutsError =
+        document.getElementById("workoutsError");
+
+      try {
+
+        const response = await fetch("/api/site", {
+          method: "GET",
+          credentials: "include",
+          cache: "no-store",
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(
+            "API returned HTTP " + response.status
+          );
+        }
+
+        const data = await response.json();
+
+        console.log("جمال موسى FITNESS API:", data);
+
+        /* =========================
+           SETTINGS
+        ========================= */
+
+        if (data.settings) {
+
+          const brand =
+            data.settings.brand ||
+            "جمال موسى FITNESS";
+
+          const logoText =
+            data.settings.logoText ||
+            "GM";
+
+          document.getElementById("brandName")
+            .textContent = brand;
+
+          document.getElementById("logoText")
+            .textContent = logoText;
+
+          document.getElementById("footerBrand")
+            .textContent = "© " + brand;
+
+          document.title = brand;
+        }
+
+        /* =========================
+           PLANS
+        ========================= */
+
+        const plans = Array.isArray(data.plans)
+          ? data.plans.filter(plan =>
+              plan && plan.active !== false
+            )
+          : [];
+
+        document.getElementById("planCount")
+          .textContent = plans.length;
+
+        plansLoading.style.display = "none";
+
+        if (plans.length === 0) {
+
+          plansContainer.innerHTML = `
+            <div class="loading">
+              لا توجد خطط متاحة حاليًا.
+            </div>
+          `;
+
+        } else {
+
+          plansContainer.innerHTML =
+            plans
+              .slice(0, 3)
+              .map(createPlanCard)
+              .join("");
+        }
+
+        /* =========================
+           WORKOUTS
+        ========================= */
+
+        let workouts = Array.isArray(data.workouts)
+          ? data.workouts
+          : [];
+
+        workouts = workouts.filter(workout =>
+          workout &&
+          !isBadWorkout(workout)
+        );
+
+        document.getElementById("workoutCount")
+          .textContent = workouts.length;
+
+        workoutsLoading.style.display = "none";
+
+        if (workouts.length === 0) {
+
+          workoutsContainer.innerHTML = `
+            <div class="loading">
+              لا توجد تمارين متاحة حاليًا.
+            </div>
+          `;
+
+        } else {
+
+          workoutsContainer.innerHTML =
+            workouts
+              .slice(0, 6)
+              .map(createWorkoutCard)
+              .join("");
+        }
+
+      } catch (error) {
+
+        console.error(
+          "حدث خطأ أثناء تحميل بيانات الموقع:",
+          error
+        );
+
+        plansLoading.style.display = "none";
+        workoutsLoading.style.display = "none";
+
+        plansError.style.display = "block";
+        workoutsError.style.display = "block";
+
+        plansError.textContent =
+          "تعذر تحميل الخطط من السيرفر. تأكد أن الموقع متصل بالـAPI.";
+
+        workoutsError.textContent =
+          "تعذر تحميل التمارين من السيرفر. افتح Console لمعرفة الخطأ.";
+
+        document.getElementById("planCount")
+          .textContent = "—";
+
+        document.getElementById("workoutCount")
+          .textContent = "—";
+      }
+    }
+
+    /* =========================
+       START
+    ========================= */
+
+    loadSite();
+
+  </script>
 <script>
+/* =========================================
+   GAMAL MOUSA FITNESS - AUTH + PAYMENT
+   نفس الـ Backend القديم
+========================================= */
 
-/* جلب بيانات الموقع من السيرفر */
-async function loadSite(){
+let ME = null;
+let SITE = { plans: [], workouts: [], settings: {} };
+let selectedPlan = null;
+let method = "paymob";
 
-  try{
-
-    const response = await fetch("/api/site",{
-      credentials:"include"
+async function api(url, options = {}) {
+    const response = await fetch(url, {
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            ...(options.headers || {})
+        },
+        ...options
     });
 
-    if(!response.ok) return;
+    let data = {};
+    try {
+        data = await response.json();
+    } catch (_) {}
 
-    const data = await response.json();
-
-    if(data.workouts){
-      animateNumber(
-        document.getElementById("countWorkouts"),
-        data.workouts.length
-      );
+    if (!response.ok) {
+        throw new Error(data.error || data.message || "حدث خطأ.");
     }
 
-    if(data.plans){
-      animateNumber(
-        document.getElementById("countPlans"),
-        data.plans.length
-      );
+    return data;
+}
+
+/* -----------------------------------------
+   تحميل بيانات الموقع
+----------------------------------------- */
+
+async function loadSiteData() {
+    try {
+        const data = await api("/api/site");
+
+        SITE = data || {
+            plans: [],
+            workouts: [],
+            settings: {}
+        };
+
+        if (!Array.isArray(SITE.plans)) {
+            SITE.plans = [];
+        }
+
+        renderPlansNew();
+    } catch (error) {
+        console.error("SITE ERROR:", error);
+    }
+}
+
+/* -----------------------------------------
+   معرفة هل المستخدم مسجل دخول
+----------------------------------------- */
+
+async function loadCurrentUser() {
+    try {
+        const data = await api("/api/me");
+
+        ME = data.user || null;
+
+        updateAuthUI();
+
+        return ME;
+    } catch (error) {
+        ME = null;
+        updateAuthUI();
+        return null;
+    }
+}
+
+/* -----------------------------------------
+   تحديث أزرار الحساب
+----------------------------------------- */
+
+function updateAuthUI() {
+    const loginButtons = document.querySelectorAll(
+        '[data-auth="login"], .login-btn, #loginBtn'
+    );
+
+    const accountButtons = document.querySelectorAll(
+        '[data-auth="account"], .account-btn, #accountBtn'
+    );
+
+    loginButtons.forEach(btn => {
+        btn.style.display = ME ? "none" : "";
+    });
+
+    accountButtons.forEach(btn => {
+        btn.style.display = ME ? "" : "none";
+    });
+
+    const userNameElements = document.querySelectorAll(
+        "[data-user-name], #userName"
+    );
+
+    userNameElements.forEach(el => {
+        el.textContent = ME
+            ? (ME.name || ME.email || "حسابي")
+            : "حسابي";
+    });
+}
+
+/* -----------------------------------------
+   عرض الخطط
+----------------------------------------- */
+
+function renderPlansNew() {
+    const grid =
+        document.querySelector("#plansGrid") ||
+        document.querySelector("#plans");
+
+    if (!grid) return;
+
+    if (!SITE.plans.length) {
+        grid.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                padding:30px;
+                text-align:center;
+                opacity:.7;
+            ">
+                لا توجد خطط متاحة حاليًا.
+            </div>
+        `;
+        return;
     }
 
-    if(data.settings){
+    grid.innerHTML = SITE.plans
+        .filter(plan => plan.active !== false)
+        .map(plan => {
 
-      if(data.settings.brand){
-        document.title=data.settings.brand;
-      }
+            const price =
+                Number(plan.price) === 0
+                    ? "مجاني"
+                    : `${plan.price} جنيه`;
 
+            const features = Array.isArray(plan.features)
+                ? plan.features
+                : [];
+
+            return `
+                <div class="card">
+
+                    <div class="pill">
+                        ${escapeHtml(plan.name || "خطة")}
+                    </div>
+
+                    <div class="price">
+                        ${price}
+                    </div>
+
+                    <div class="muted">
+                        ${escapeHtml(plan.period || "شهري")}
+                    </div>
+
+                    <p>
+                        ${escapeHtml(plan.description || "")}
+                    </p>
+
+                    ${
+                        features.length
+                            ? `
+                                <div class="features">
+                                    ${features
+                                        .map(
+                                            feature =>
+                                                `✓ ${escapeHtml(feature)}`
+                                        )
+                                        .join("<br>")}
+                                </div>
+                            `
+                            : ""
+                    }
+
+                    ${
+                        Number(plan.price) > 0
+                            ? `
+                                <button
+                                    class="btn"
+                                    style="width:100%;margin-top:15px"
+                                    onclick="openPay('${escapeHtml(plan.id)}')"
+                                >
+                                    اشترك الآن
+                                </button>
+                            `
+                            : `
+                                <button
+                                    class="btn alt"
+                                    style="width:100%;margin-top:15px"
+                                >
+                                    ابدأ مجانًا
+                                </button>
+                            `
+                    }
+
+                </div>
+            `;
+        })
+        .join("");
+}
+
+/* -----------------------------------------
+   فتح نافذة الدفع
+----------------------------------------- */
+
+async function openPay(id) {
+
+    /* نتأكد من الجلسة الحقيقية */
+    if (!ME) {
+        await loadCurrentUser();
     }
 
-  }catch(error){
+    /* لو لسه مش مسجل */
+    if (!ME) {
+        alert("من فضلك سجل الدخول أولًا.");
 
-    console.log("Site API:",error);
+        window.location.href = "login.html";
+        return;
+    }
 
-  }
+    selectedPlan = SITE.plans.find(
+        plan => String(plan.id) === String(id)
+    );
+
+    if (!selectedPlan) {
+        alert("الخطة غير موجودة.");
+        return;
+    }
+
+    method = "paymob";
+
+    showPaymentModal();
 
 }
 
+/* -----------------------------------------
+   إنشاء نافذة الدفع لو مش موجودة
+----------------------------------------- */
 
-/* رقم متحرك */
-function animateNumber(element,target){
+function showPaymentModal() {
 
-  if(!element)return;
+    let modal = document.getElementById("paymentModalNew");
 
-  let current=0;
-  const duration=1000;
-  const start=performance.now();
+    if (!modal) {
 
-  function update(time){
+        modal = document.createElement("div");
 
-    const progress=Math.min((time-start)/duration,1);
+        modal.id = "paymentModalNew";
 
-    current=Math.floor(progress*target);
+        modal.innerHTML = `
+            <div class="modal" style="
+                display:grid;
+                position:fixed;
+                inset:0;
+                z-index:99999;
+                background:rgba(0,0,0,.82);
+                place-items:center;
+                padding:20px;
+            ">
 
-    element.textContent=current;
+                <div class="box" style="
+                    width:min(500px,100%);
+                    max-height:90vh;
+                    overflow:auto;
+                ">
 
-    if(progress<1){
-      requestAnimationFrame(update);
-    }else{
-      element.textContent=target;
+                    <div style="
+                        display:flex;
+                        justify-content:space-between;
+                        align-items:center;
+                        gap:15px;
+                    ">
+
+                        <div>
+                            <h2 style="margin:0">
+                                إتمام الاشتراك
+                            </h2>
+
+                            <p
+                                id="paymentPlanNew"
+                                class="muted"
+                            ></p>
+                        </div>
+
+                        <button
+                            class="btn alt"
+                            onclick="closePay()"
+                        >
+                            ✕
+                        </button>
+
+                    </div>
+
+                    <hr style="
+                        border:0;
+                        border-top:1px solid rgba(255,255,255,.1);
+                        margin:20px 0;
+                    ">
+
+                    <label>طريقة الدفع</label>
+
+                    <div
+                        class="paymentMethods"
+                        style="
+                            display:grid;
+                            grid-template-columns:repeat(3,1fr);
+                            gap:10px;
+                            margin:10px 0 18px;
+                        "
+                    >
+
+                        <div
+                            class="method active"
+                            data-method="paymob"
+                            onclick="chooseMethod(this)"
+                        >
+                            💳 Paymob
+                            <br>
+                            <small>بطاقة / محافظ</small>
+                        </div>
+
+                        <div
+                            class="method"
+                            data-method="cash"
+                            onclick="chooseMethod(this)"
+                        >
+                            💵 كاش
+                            <br>
+                            <small>تحويل يدوي</small>
+                        </div>
+
+                        <div
+                            class="method"
+                            data-method="fawry"
+                            onclick="chooseMethod(this)"
+                        >
+                            🟡 فوري
+                            <br>
+                            <small>إذا كان متاحًا</small>
+                        </div>
+
+                    </div>
+
+                    <label>
+                        رقم الهاتف للدفع
+                    </label>
+
+                    <input
+                        id="paymentPhoneNew"
+                        type="tel"
+                        placeholder="01xxxxxxxxx"
+                    >
+
+                    <div
+                        id="cashBoxNew"
+                        class="msg"
+                        style="display:none"
+                    ></div>
+
+                    <label>
+                        مرجع الدفع للكاش
+                    </label>
+
+                    <input
+                        id="paymentReferenceNew"
+                        placeholder="اكتب مرجع التحويل إذا وجد"
+                    >
+
+                    <button
+                        class="btn"
+                        style="width:100%;margin-top:10px"
+                        onclick="payNow()"
+                    >
+                        متابعة للدفع
+                    </button>
+
+                    <div
+                        id="paymentMessageNew"
+                        class="msg"
+                        style="display:none"
+                    ></div>
+
+                </div>
+
+            </div>
+        `;
+
+        document.body.appendChild(modal);
     }
 
-  }
+    const planText = document.getElementById("paymentPlanNew");
 
-  requestAnimationFrame(update);
+    if (planText && selectedPlan) {
+        planText.textContent =
+            `${selectedPlan.name} — ${selectedPlan.price} جنيه / ${selectedPlan.period || "شهري"}`;
+    }
+
+    modal.style.display = "block";
+
+    updatePaymentMethodUI();
 }
 
+/* -----------------------------------------
+   تغيير طريقة الدفع
+----------------------------------------- */
 
-/* ظهور العناصر عند النزول */
-const observer=new IntersectionObserver(
-  entries=>{
+function chooseMethod(element) {
 
-    entries.forEach(entry=>{
+    document
+        .querySelectorAll("#paymentModalNew .method")
+        .forEach(item => item.classList.remove("active"));
 
-      if(entry.isIntersecting){
+    element.classList.add("active");
 
-        entry.target.classList.add("show");
+    method = element.dataset.method;
 
-      }
+    updatePaymentMethodUI();
+}
 
-    });
+/* -----------------------------------------
+   تحديث واجهة طريقة الدفع
+----------------------------------------- */
 
-  },
-  {threshold:.12}
-);
+function updatePaymentMethodUI() {
 
-document.querySelectorAll(".reveal").forEach(element=>{
-  observer.observe(element);
-});
+    const cashBox =
+        document.getElementById("cashBoxNew");
 
+    if (!cashBox) return;
 
-/* السنة */
-document.getElementById("year").textContent=
-  new Date().getFullYear();
+    if (method === "cash") {
 
+        cashBox.style.display = "block";
 
-/* تشغيل بيانات السيرفر */
-loadSite();
+        cashBox.innerHTML = `
+            بعد إنشاء الطلب سيظهر لك رقم التحويل
+            الخاص بالدفع النقدي.
+            <br>
+            ثم أدخل مرجع التحويل واضغط متابعة.
+        `;
 
+    } else {
+
+        cashBox.style.display = "none";
+        cashBox.innerHTML = "";
+    }
+}
+
+/* -----------------------------------------
+   إغلاق الدفع
+----------------------------------------- */
+
+function closePay() {
+
+    const modal =
+        document.getElementById("paymentModalNew");
+
+    if (modal) {
+        modal.style.display = "none";
+    }
+}
+
+/* -----------------------------------------
+   تنفيذ الدفع
+----------------------------------------- */
+
+async function payNow() {
+
+    if (!selectedPlan) {
+        showPaymentMessage(
+            "اختر خطة أولًا.",
+            true
+        );
+        return;
+    }
+
+    /* حماية إضافية */
+    if (!ME) {
+
+        await loadCurrentUser();
+
+        if (!ME) {
+
+            showPaymentMessage(
+                "انتهت جلسة تسجيل الدخول. سجل الدخول مرة أخرى.",
+                true
+            );
+
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1200);
+
+            return;
+        }
+    }
+
+    const phone =
+        document.getElementById(
+            "paymentPhoneNew"
+        )?.value.trim() || "";
+
+    const reference =
+        document.getElementById(
+            "paymentReferenceNew"
+        )?.value.trim() || "";
+
+    try {
+
+        showPaymentMessage(
+            "جاري إنشاء طلب الدفع..."
+        );
+
+        const data = await api(
+            "/api/checkout",
+            {
+                method: "POST",
+                body: JSON.stringify({
+                    planId: selectedPlan.id,
+                    provider: method,
+                    phone: phone
+                })
+            }
+        );
+
+        /* Paymob / External */
+        if (
+            data.mode === "redirect" ||
+            data.mode === "external"
+        ) {
+
+            if (!data.url) {
+                throw new Error(
+                    "لم يتم استلام رابط الدفع."
+                );
+            }
+
+            window.location.href = data.url;
+            return;
+        }
+
+        /* Cash */
+        if (data.mode === "cash") {
+
+            const cashNumber =
+                data.cashNumber || "رقم التحويل";
+
+            showPaymentMessage(`
+                تم إنشاء طلب الدفع بنجاح.
+                <br><br>
+                حوّل مبلغ
+                <strong>${selectedPlan.price} جنيه</strong>
+                إلى:
+                <strong>${escapeHtml(cashNumber)}</strong>
+                <br><br>
+                بعد التحويل أدخل مرجع الدفع واضغط متابعة مرة أخرى.
+            `);
+
+            if (reference && data.paymentId) {
+
+                const confirmData =
+                    await api(
+                        "/api/cash-confirm",
+                        {
+                            method: "POST",
+                            body: JSON.stringify({
+                                paymentId:
+                                    data.paymentId,
+                                reference:
+                                    reference
+                            })
+                        }
+                    );
+
+                showPaymentMessage(`
+                    ✅ <strong>طلبك قيد المراجعة</strong>
+                    <br><br>
+                    تم إرسال بيانات الدفع للإدارة.
+                    سيتم تفعيل الاشتراك بعد مراجعة الدفع.
+                `);
+
+                return;
+            }
+
+            return;
+        }
+
+        /* أي استجابة أخرى */
+        showPaymentMessage(`
+            ✅ تم إنشاء طلب الدفع.
+            <br>
+            يمكنك متابعة حالة طلبك من حسابك.
+        `);
+
+    } catch (error) {
+
+        console.error(
+            "PAYMENT ERROR:",
+            error
+        );
+
+        showPaymentMessage(
+            error.message ||
+            "حدث خطأ أثناء إنشاء طلب الدفع.",
+            true
+        );
+    }
+}
+
+/* -----------------------------------------
+   رسالة الدفع
+----------------------------------------- */
+
+function showPaymentMessage(
+    message,
+    error = false
+) {
+
+    const box =
+        document.getElementById(
+            "paymentMessageNew"
+        );
+
+    if (!box) return;
+
+    box.style.display = "block";
+
+    box.innerHTML = message;
+
+    if (error) {
+        box.style.border =
+            "1px solid rgba(255,80,80,.5)";
+    } else {
+        box.style.border =
+            "1px solid rgba(56,232,164,.35)";
+    }
+}
+
+/* -----------------------------------------
+   حماية النصوص
+----------------------------------------- */
+
+function escapeHtml(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+/* -----------------------------------------
+   تشغيل النظام
+----------------------------------------- */
+
+(async function initFitness() {
+
+    await Promise.all([
+        loadSiteData(),
+        loadCurrentUser()
+    ]);
+
+    console.log(
+        "جمال موسى FITNESS: نظام الحساب والدفع جاهز",
+        ME
+    );
+
+})();
 </script>
-
 </body>
 </html>
