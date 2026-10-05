@@ -1,32 +1,609 @@
-<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>جمال موسى FITNESS</title><style>
-:root{--bg:#07111f;--card:#0d1b2d;--card2:#10243a;--txt:#f4f7fb;--muted:#9fb0c3;--accent:#38e8a4;--accent2:#63a4ff;--danger:#ff6b7a}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#122a45 0,#07111f 42%,#050b14 100%);color:var(--txt);font-family:Tahoma,Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:auto;padding:0 20px}.nav{position:sticky;top:0;z-index:20;background:rgba(5,11,20,.88);backdrop-filter:blur(16px);border-bottom:1px solid #ffffff12}.navin{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-weight:900}.logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#06101a;display:grid;place-items:center;font-weight:1000}.links{display:flex;gap:18px;align-items:center}.btn{border:0;border-radius:14px;padding:12px 17px;font-weight:800;cursor:pointer;background:var(--accent);color:#05131a}.btn.alt{background:#ffffff10;color:var(--txt);border:1px solid #ffffff18}.hero{padding:85px 0 55px;display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:center}.eyebrow{color:var(--accent);font-weight:900}.hero h1{font-size:clamp(40px,6vw,76px);line-height:1.02;margin:12px 0}.hero p{font-size:19px;color:var(--muted);line-height:1.9}.heroCard{background:linear-gradient(145deg,#102840,#091727);border:1px solid #ffffff12;border-radius:28px;padding:28px;box-shadow:0 25px 80px #0008}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:20px}.stat{background:#ffffff08;border:1px solid #ffffff10;border-radius:18px;padding:18px;text-align:center}.section{padding:60px 0}.section h2{font-size:36px;margin:0 0 10px}.sub{color:var(--muted);margin-bottom:25px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:linear-gradient(145deg,#0d1c2e,#091522);border:1px solid #ffffff10;border-radius:22px;padding:20px}.price{font-size:36px;font-weight:1000;margin:12px 0}.muted{color:var(--muted)}.pill{display:inline-block;background:#38e8a41a;color:var(--accent);border-radius:999px;padding:6px 10px;font-size:12px;font-weight:800}.workout img,.workout video{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:16px;background:#06101b}.workout h3{margin:13px 0 8px}.features{line-height:2.1;color:#c9d4df}.modal{overflow-y:auto;position:fixed;inset:0;background:#000b;display:none;place-items:center;z-index:50;padding:20px}.modal.show{display:grid}.box{width:min(480px,100%);background:#0b192a;border:1px solid #ffffff16;border-radius:24px;padding:24px}.box input,.box select,.box textarea{width:100%;padding:13px;border-radius:12px;border:1px solid #ffffff15;background:#06111e;color:#fff;margin:7px 0 12px}.box label{font-weight:800;font-size:13px}.msg{margin:10px 0;padding:10px;border-radius:12px;background:#ffffff0b}.account{display:none}.locked{opacity:.65}.paymentMethods{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.method{padding:14px;border:1px solid #ffffff12;border-radius:16px;background:#ffffff08;cursor:pointer}.method.active{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}.footer{padding:40px 0;border-top:1px solid #ffffff10;color:var(--muted)}@media(max-width:850px){.hero{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.links a{display:none}.paymentMethods{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr 1fr}}
-</style></head><body>
-<nav class="nav"><div class="wrap navin"><div class="brand"><div class="logo" id="logo">GM</div><div id="brand">جمال موسى FITNESS</div></div><div class="links"><a href="#workouts">التمارين</a><a href="#plans">الاشتراكات</a><a href="#about">عن الموقع</a><button class="btn alt" onclick="openAuth('login')">دخول</button><button class="btn" onclick="openAuth('register')">إنشاء حساب</button></div></div></nav>
-<main><section class="wrap hero"><div><div class="eyebrow">FITNESS • TRAIN • PROGRESS</div><h1>غيّر عاداتك.<br>ابنِ قوتك.</h1><p>موقعك الرياضي الخاص: تمارين منظمة، صور وفيديوهات، خطط اشتراك، وحساب شخصي لمتابعة تقدمك.</p><div style="display:flex;gap:10px;flex-wrap:wrap"><a class="btn" href="#plans">شوف الاشتراكات</a><a class="btn alt" href="#workouts">ابدأ التمارين</a></div><div class="stats"><div class="stat"><b>تمارين</b><br><span id="countW">—</span></div><div class="stat"><b>خطط</b><br><span id="countP">—</span></div><div class="stat"><b>محتوى</b><br><span>صور + فيديو</span></div></div></div><div class="heroCard"><span class="pill">GM FITNESS</span><h2>من البداية للاحتراف</h2><p class="muted">اختار مستواك، اشترك في الخطة المناسبة، وافتح المحتوى حسب اشتراكك.</p><div class="card" style="margin-top:15px"><b>💪 هدفنا</b><p class="muted">الاستمرارية والقوة والعادات الصحية بدون حلول سريعة أو وعود غير واقعية.</p></div></div></section>
-<section class="section wrap" id="plans"><h2>خطط الاشتراك</h2><p class="sub">الأسعار قابلة للتعديل بالكامل من لوحة الإدارة.</p><div id="plansGrid" class="grid"></div></section>
-<section class="section wrap" id="workouts"><h2>مكتبة التمارين</h2><p class="sub">المحتوى بيتحدث من لوحة الإدارة.</p><div id="workoutsGrid" class="grid"></div></section>
-<section class="section wrap" id="about"><div class="heroCard"><h2>حسابك</h2><div id="loggedOut"><p class="muted">سجل الدخول علشان تشوف خطتك وتقدمك وتطلب الاشتراك.</p><button class="btn" onclick="openAuth('login')">تسجيل الدخول</button></div><div id="loggedIn" class="account"><h3 id="hello"></h3><p>الخطة الحالية: <b id="myPlan"></b></p><p id="expiry" class="muted"></p><button class="btn alt" onclick="logout()">تسجيل الخروج</button></div></div></section></main>
-<footer class="footer"><div class="wrap">© <span id="year"></span> جمال موسى FITNESS — <span id="support"></span></div></footer>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>جمال موسى FITNESS</title>
 
-<div class="modal" id="authModal"><div class="box"><div style="display:flex;justify-content:space-between"><h2 id="authTitle">تسجيل الدخول</h2><button class="btn alt" onclick="closeAuth()">×</button></div><div id="authForm"></div><div id="authMsg" class="msg" style="display:none"></div></div></div>
-<div class="modal" id="payModal"><div class="box"><div style="display:flex;justify-content:space-between"><h2>اختار طريقة الدفع</h2><button class="btn alt" onclick="closePay()">×</button></div><p id="payPlan" class="muted"></p><div class="paymentMethods"><div class="method active" data-method="paymob" onclick="chooseMethod(this)">💳 Paymob<br><small>بطاقات + محافظ + طرق متاحة بحسابك</small></div><div class="method" data-method="cash" onclick="chooseMethod(this)">💵 كاش<br><small>تأكيد يدوي من الإدارة</small></div><div class="method" data-method="fawry" onclick="chooseMethod(this)">🟡 فوري<br><small>إذا تم إعداد رابط فوري</small></div></div><label>رقم الهاتف للدفع الإلكتروني</label><input id="phone" placeholder="01xxxxxxxxx"><div id="cashBox" style="display:none" class="msg"></div><label>مرجع الدفع (للكاش)</label><input id="reference" placeholder="اكتب المرجع إن وجد"><button class="btn" style="width:100%" onclick="payNow()">متابعة الدفع</button><div id="payMsg" class="msg" style="display:none"></div></div></div>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Tahoma,Arial,sans-serif;
+  background:#070b12;
+  color:#fff;
+  overflow-x:hidden;
+}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit;cursor:pointer;border:0}
+
+:root{
+  --gold:#f5c542;
+  --gold2:#ffdf70;
+  --dark:#070b12;
+  --card:#101722;
+  --muted:#9aa6b5;
+  --border:rgba(255,255,255,.09);
+}
+
+/* الخلفية المتحركة */
+.bg{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 80% 20%,rgba(245,197,66,.12),transparent 30%),
+    radial-gradient(circle at 15% 70%,rgba(0,180,255,.08),transparent 30%),
+    var(--dark);
+}
+.shape{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(2px);
+  opacity:.35;
+  animation:float 10s ease-in-out infinite;
+}
+.s1{
+  width:280px;height:280px;
+  background:rgba(245,197,66,.13);
+  top:8%;right:-80px;
+}
+.s2{
+  width:190px;height:190px;
+  background:rgba(0,170,255,.10);
+  bottom:10%;left:-50px;
+  animation-delay:2s;
+}
+.s3{
+  width:100px;height:100px;
+  border:2px solid rgba(245,197,66,.3);
+  top:45%;left:30%;
+  animation-delay:4s;
+}
+@keyframes float{
+  0%,100%{transform:translate(0,0) rotate(0)}
+  50%{transform:translate(20px,-30px) rotate(12deg)}
+}
+
+/* Navbar */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(7,11,18,.82);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.logo{
+  font-size:22px;
+  font-weight:900;
+}
+.logo span{color:var(--gold)}
+.links{
+  display:flex;
+  gap:22px;
+  align-items:center;
+}
+.links a{
+  color:#dbe2ea;
+  transition:.25s;
+}
+.links a:hover{color:var(--gold)}
+.nav-btn{
+  background:var(--gold);
+  color:#111;
+  padding:10px 18px;
+  border-radius:12px;
+  font-weight:800;
+  transition:.25s;
+}
+.nav-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 25px rgba(245,197,66,.25);
+}
+
+/* Hero */
+.hero{
+  min-height:calc(100vh - 75px);
+  max-width:1200px;
+  margin:auto;
+  padding:80px 22px;
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  align-items:center;
+  gap:50px;
+}
+.badge{
+  display:inline-flex;
+  padding:8px 14px;
+  border:1px solid rgba(245,197,66,.3);
+  background:rgba(245,197,66,.08);
+  color:var(--gold2);
+  border-radius:50px;
+  margin-bottom:22px;
+}
+.hero h1{
+  font-size:clamp(42px,7vw,78px);
+  line-height:1.05;
+  margin-bottom:25px;
+}
+.hero h1 span{
+  color:var(--gold);
+  text-shadow:0 0 30px rgba(245,197,66,.15);
+}
+.hero p{
+  color:var(--muted);
+  font-size:19px;
+  line-height:1.9;
+  max-width:650px;
+}
+.actions{
+  display:flex;
+  gap:14px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.primary,.secondary{
+  padding:15px 25px;
+  border-radius:14px;
+  font-weight:900;
+  transition:.3s;
+}
+.primary{
+  background:var(--gold);
+  color:#111;
+}
+.secondary{
+  background:#111a27;
+  color:#fff;
+  border:1px solid var(--border);
+}
+.primary:hover,.secondary:hover{
+  transform:translateY(-5px);
+}
+.primary:hover{
+  box-shadow:0 12px 35px rgba(245,197,66,.25);
+}
+
+/* Hero card */
+.hero-card{
+  min-height:430px;
+  border:1px solid var(--border);
+  border-radius:30px;
+  background:linear-gradient(145deg,#121c2a,#0b1018);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.3);
+  animation:heroFloat 5s ease-in-out infinite;
+}
+@keyframes heroFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+.hero-circle{
+  width:280px;
+  height:280px;
+  border-radius:50%;
+  border:1px solid rgba(245,197,66,.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+}
+.hero-circle:before{
+  content:"";
+  position:absolute;
+  inset:25px;
+  border-radius:50%;
+  border:1px dashed rgba(245,197,66,.35);
+  animation:spin 15s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-icon{
+  font-size:100px;
+  filter:drop-shadow(0 0 25px rgba(245,197,66,.25));
+}
+
+/* Sections */
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:90px 22px;
+}
+.section-head{
+  text-align:center;
+  margin-bottom:45px;
+}
+.section-head h2{
+  font-size:38px;
+  margin-bottom:12px;
+}
+.section-head p{color:var(--muted)}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.card{
+  background:rgba(16,23,34,.86);
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:28px;
+  transition:.35s;
+  position:relative;
+  overflow:hidden;
+}
+.card:before{
+  content:"";
+  position:absolute;
+  width:100px;height:100px;
+  background:rgba(245,197,66,.08);
+  border-radius:50%;
+  top:-50px;left:-50px;
+}
+.card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(245,197,66,.3);
+  box-shadow:0 20px 45px rgba(0,0,0,.25);
+}
+.icon{
+  width:58px;height:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:16px;
+  background:rgba(245,197,66,.1);
+  font-size:28px;
+  margin-bottom:20px;
+}
+.card h3{margin-bottom:10px}
+.card p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
+/* Stats */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+.stat{
+  text-align:center;
+  padding:30px;
+  background:#0e151f;
+  border:1px solid var(--border);
+  border-radius:20px;
+}
+.stat-number{
+  font-size:45px;
+  font-weight:900;
+  color:var(--gold);
+  margin-bottom:5px;
+}
+.stat p{color:var(--muted)}
+
+/* CTA */
+.cta{
+  text-align:center;
+  background:linear-gradient(135deg,#151d29,#0c1119);
+  border:1px solid var(--border);
+  border-radius:30px;
+  padding:60px 25px;
+}
+.cta h2{
+  font-size:42px;
+  margin-bottom:15px;
+}
+.cta p{
+  color:var(--muted);
+  margin-bottom:25px;
+}
+
+/* Footer */
+footer{
+  border-top:1px solid var(--border);
+  padding:35px 22px;
+  text-align:center;
+  color:var(--muted);
+}
+
+/* Scroll animation */
+.reveal{
+  opacity:0;
+  transform:translateY(35px);
+  transition:opacity .8s ease,transform .8s ease;
+}
+.reveal.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* Mobile */
+@media(max-width:850px){
+  .links{display:none}
+  .hero{
+    grid-template-columns:1fr;
+    text-align:center;
+    padding-top:55px;
+  }
+  .hero p{margin:auto}
+  .actions{justify-content:center}
+  .hero-card{min-height:330px}
+  .cards{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr}
+  .section{padding:65px 18px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation:none!important;
+    transition:none!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg">
+  <div class="shape s1"></div>
+  <div class="shape s2"></div>
+  <div class="shape s3"></div>
+</div>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      جمال موسى <span>FITNESS</span>
+    </a>
+
+    <nav class="links">
+      <a href="index.html">الرئيسية</a>
+      <a href="plans.html">الاشتراكات</a>
+      <a href="workouts.html">التمارين</a>
+      <a href="programs.html">البرامج</a>
+      <a href="contact.html">الدعم</a>
+    </nav>
+
+    <a href="login.html" class="nav-btn">تسجيل الدخول</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="reveal">
+    <div class="badge">🔥 ابدأ رحلتك الآن</div>
+
+    <h1>
+      ابنِ جسمك<br>
+      <span>وطوّر قوتك</span>
+    </h1>
+
+    <p>
+      جمال موسى FITNESS منصة لياقة متكاملة تساعدك على التدريب،
+      متابعة التمارين والبرامج، والوصول إلى محتوى تدريبي منظم.
+    </p>
+
+    <div class="actions">
+      <a href="plans.html" class="primary">اكتشف الاشتراكات</a>
+      <a href="workouts.html" class="secondary">شاهد التمارين</a>
+    </div>
+  </div>
+
+  <div class="hero-card reveal">
+    <div class="hero-circle">
+      <div class="hero-icon">💪</div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="section-head reveal">
+    <h2>كل ما تحتاجه في مكان واحد</h2>
+    <p>منصة منظمة لمساعدتك على الالتزام والتطور</p>
+  </div>
+
+  <div class="cards">
+
+    <a href="workouts.html" class="card reveal">
+      <div class="icon">🏋️</div>
+      <h3>مكتبة التمارين</h3>
+      <p>
+        تمارين متنوعة مع شرح العضلات المستهدفة،
+        المجموعات والتكرارات وطريقة الأداء.
+      </p>
+    </a>
+
+    <a href="programs.html" class="card reveal">
+      <div class="icon">📋</div>
+      <h3>البرامج التدريبية</h3>
+      <p>
+        برامج منظمة تساعدك على التدريب بطريقة
+        واضحة ومتدرجة.
+      </p>
+    </a>
+
+    <a href="plans.html" class="card reveal">
+      <div class="icon">⭐</div>
+      <h3>خطط الاشتراك</h3>
+      <p>
+        اختر الخطة المناسبة لك واستمتع بالمحتوى
+        المتاح حسب اشتراكك.
+      </p>
+    </a>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="section-head reveal">
+    <h2>المنصة بالأرقام</h2>
+    <p>المحتوى يتم تحميله من السيرفر تلقائيًا</p>
+  </div>
+
+  <div class="stats">
+
+    <div class="stat reveal">
+      <div class="stat-number" id="countWorkouts">0</div>
+      <p>تمرين</p>
+    </div>
+
+    <div class="stat reveal">
+      <div class="stat-number" id="countPlans">0</div>
+      <p>خطة اشتراك</p>
+    </div>
+
+    <div class="stat reveal">
+      <div class="stat-number">24/7</div>
+      <p>الوصول للمنصة</p>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="cta reveal">
+    <h2>جاهز تبدأ؟ 🔥</h2>
+    <p>
+      اختار خطتك وابدأ الوصول إلى المحتوى التدريبي.
+    </p>
+    <a href="plans.html" class="primary">ابدأ الآن</a>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  © <span id="year"></span> جمال موسى FITNESS — جميع الحقوق محفوظة
+</footer>
+
+
 <script>
-let SITE={plans:[],workouts:[],settings:{}},ME=null,selectedPlan=null,method="paymob";
-const $=id=>document.getElementById(id);
-async function api(url,opt={}){const r=await fetch(url,{credentials:"include",headers:{"Content-Type":"application/json",...(opt.headers||{})},...opt});let d={};try{d=await r.json()}catch{};if(!r.ok)throw Error(d.error||"حدث خطأ");return d}
-async function boot(){SITE=await api("/api/site");$("brand").textContent=SITE.settings.brand;$("logo").textContent=SITE.settings.logoText;$("support").textContent=SITE.settings.supportPhone;$("year").textContent=new Date().getFullYear();$("countW").textContent=SITE.workouts.length;$("countP").textContent=SITE.plans.length;renderPlans();renderWorkouts();let m=await api("/api/me");ME=m.user;renderMe()}
-function renderPlans(){$("plansGrid").innerHTML=SITE.plans.map(p=>`<div class="card"><span class="pill">${p.name}</span><div class="price">${p.price===0?"مجاني":p.price+" جنيه"}</div><div class="muted">${p.period||"شهري"}</div><p>${p.description||""}</p><div class="features">${(p.features||[]).map(x=>"✓ "+x).join("<br>")}</div>${p.price>0?`<button class="btn" style="width:100%;margin-top:15px" onclick="openPay('${p.id}')">اشترك الآن</button>`:"<button class='btn alt' style='width:100%;margin-top:15px'>ابدأ مجانًا</button>"}</div>`).join("")}
-function renderWorkouts(){const current=ME?.planId||"free";const rank={free:0,pro:1,premium:2};$("workoutsGrid").innerHTML=SITE.workouts.map(w=>{const locked=rank[w.planId]>rank[current];return `<div class="card workout ${locked?"locked":""}">${w.image?`<img src="${w.image}" alt="">`:``}<span class="pill">${w.level} • ${w.planId}</span><h3>${w.title}</h3><p class="muted">${w.description}</p><div class="muted">الجولات: ${w.sets||"—"} • التكرارات: ${w.reps||"—"}</div>${w.video&&!locked?`<video controls src="${w.video}"></video>`:""}${locked?`<div class="msg">🔒 محتوى الخطة ${w.planId}. اشترك لفتحه.</div>`:""}</div>`}).join("")}
-function renderMe(){if(ME){$("loggedOut").style.display="none";$("loggedIn").style.display="block";$("hello").textContent="أهلاً "+ME.name;$("myPlan").textContent=SITE.plans.find(p=>p.id===ME.planId)?.name||ME.planId;$("expiry").textContent=ME.expiresAt?"ينتهي الاشتراك: "+new Date(ME.expiresAt).toLocaleDateString("ar-EG"):"";}else{$("loggedOut").style.display="block";$("loggedIn").style.display="none"}renderWorkouts()}
-function openAuth(mode){$("authModal").classList.add("show");$("authTitle").textContent=mode==="login"?"تسجيل الدخول":"إنشاء حساب";$("authForm").innerHTML=mode==="login"?`<label>البريد الإلكتروني</label><input id="aEmail"><label>كلمة المرور</label><input id="aPass" type="password"><button class="btn" style="width:100%" onclick="login()">دخول</button><p class="muted">ليس لديك حساب؟ <a href="#" onclick="openAuth('register');return false">إنشاء حساب</a></p>`:`<label>الاسم</label><input id="aName"><label>البريد الإلكتروني</label><input id="aEmail"><label>كلمة المرور</label><input id="aPass" type="password"><button class="btn" style="width:100%" onclick="register()">إنشاء الحساب</button><p class="muted">عندك حساب؟ <a href="#" onclick="openAuth('login');return false">دخول</a></p>`;$("authMsg").style.display="none"}
-function closeAuth(){$("authModal").classList.remove("show")}
-async function login(){try{const d=await api("/api/login",{method:"POST",body:JSON.stringify({email:$("aEmail").value,password:$("aPass").value})});ME=d.user;closeAuth();renderMe();alert("تم تسجيل الدخول");}catch(e){show("authMsg",e.message)}}
-async function register(){try{const d=await api("/api/register",{method:"POST",body:JSON.stringify({name:$("aName").value,email:$("aEmail").value,password:$("aPass").value})});ME=d.user;closeAuth();renderMe();alert("تم إنشاء الحساب");}catch(e){show("authMsg",e.message)}}
-async function logout(){await api("/api/logout",{method:"POST"});ME=null;renderMe()}
-function show(id,msg){$(id).textContent=msg;$(id).style.display="block"}
-function openPay(id){if(!ME){openAuth("login");return}selectedPlan=SITE.plans.find(p=>p.id===id);method="paymob";$("payPlan").textContent=`الخطة: ${selectedPlan.name} — ${selectedPlan.price} جنيه / ${selectedPlan.period}`;$("payModal").classList.add("show");$("cashBox").style.display="none"}
-function closePay(){$("payModal").classList.remove("show")}
-function chooseMethod(el){document.querySelectorAll(".method").forEach(x=>x.classList.remove("active"));el.classList.add("active");method=el.dataset.method;$("cashBox").style.display=method==="cash"?"block":"none";if(method==="cash")$("cashBox").textContent="حوّل المبلغ إلى رقم الكاش: "+SITE.settings.cashNumber+" ثم اكتب المرجع واضغط متابعة."}
-async function payNow(){try{const d=await api("/api/checkout",{method:"POST",body:JSON.stringify({planId:selectedPlan.id,provider:method,phone:$("phone").value})});if(d.mode==="redirect"||d.mode==="external"){location.href=d.url;return}if(d.mode==="cash"){show("payMsg","حوّل "+selectedPlan.price+" جنيه إلى "+d.cashNumber+" ثم اكتب المرجع واضغط متابعة مرة أخرى.");const ref=$("reference").value;if(ref){await api("/api/cash-confirm",{method:"POST",body:JSON.stringify({paymentId:d.paymentId,reference:ref})});show("payMsg","⏳ طلبك قيد المراجعة، برجاء الانتظار ✅");}}}catch(e){show("payMsg",e.message)}}
-boot().catch(e=>alert(e.message));
-</script></body></html>
+
+/* جلب بيانات الموقع من السيرفر */
+async function loadSite(){
+
+  try{
+
+    const response = await fetch("/api/site",{
+      credentials:"include"
+    });
+
+    if(!response.ok) return;
+
+    const data = await response.json();
+
+    if(data.workouts){
+      animateNumber(
+        document.getElementById("countWorkouts"),
+        data.workouts.length
+      );
+    }
+
+    if(data.plans){
+      animateNumber(
+        document.getElementById("countPlans"),
+        data.plans.length
+      );
+    }
+
+    if(data.settings){
+
+      if(data.settings.brand){
+        document.title=data.settings.brand;
+      }
+
+    }
+
+  }catch(error){
+
+    console.log("Site API:",error);
+
+  }
+
+}
+
+
+/* رقم متحرك */
+function animateNumber(element,target){
+
+  if(!element)return;
+
+  let current=0;
+  const duration=1000;
+  const start=performance.now();
+
+  function update(time){
+
+    const progress=Math.min((time-start)/duration,1);
+
+    current=Math.floor(progress*target);
+
+    element.textContent=current;
+
+    if(progress<1){
+      requestAnimationFrame(update);
+    }else{
+      element.textContent=target;
+    }
+
+  }
+
+  requestAnimationFrame(update);
+}
+
+
+/* ظهور العناصر عند النزول */
+const observer=new IntersectionObserver(
+  entries=>{
+
+    entries.forEach(entry=>{
+
+      if(entry.isIntersecting){
+
+        entry.target.classList.add("show");
+
+      }
+
+    });
+
+  },
+  {threshold:.12}
+);
+
+document.querySelectorAll(".reveal").forEach(element=>{
+  observer.observe(element);
+});
+
+
+/* السنة */
+document.getElementById("year").textContent=
+  new Date().getFullYear();
+
+
+/* تشغيل بيانات السيرفر */
+loadSite();
+
+</script>
+
+</body>
+</html>
