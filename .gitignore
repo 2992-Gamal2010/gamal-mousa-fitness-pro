@@ -1,0 +1,46 @@
+.vercel
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Runtime uploads
+fitness-server/uploads/*
+!fitness-server/uploads/.gitkeep
+
+# Private local data
+fitness-server/data/users.json
+fitness-server/data/payments.json
+fitness-server/data/*.bak
+fitness-server/data-backup/
+
+# Local test files
+cookies.txt
+test.txt
+tiny.txt
+*_current.txt
+checkout-current.txt
+login-current.txt
+server-current.txt
+
+# Backups
+*-backup/
+*-backup.*
+fitness-admin/index-before-*.html
+fitness-site/index-before-*.html
+fitness-site/index-*.html
+fitness-site-backup*/
+
+# Temporary files accidentally created during editing
+findstr
+curl
+node
+notepad
+powershell
+main
+git

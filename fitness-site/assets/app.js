@@ -1,5 +1,4 @@
-
-const API_BASE="";
+const API_BASE=location.origin;
 const $=s=>document.querySelector(s);
 const $$=s=>[...document.querySelectorAll(s)];
 async function api(url,opt={}){
